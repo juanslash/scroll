@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>The Signal</title>
     <style>
         ::-webkit-scrollbar {
             display: none;
         }
+
         html {
-            -ms-overflow-style: none;  
-            scrollbar-width: none;  
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
     <style>
@@ -23,10 +24,12 @@
         @keyframes backgroundBlur {
             0% {
                 filter: blur(5px);
+                opacity: .5;
             }
 
             100% {
                 filter: blur(0px);
+                opacity: 1;
             }
         }
 
@@ -57,6 +60,10 @@
             background-color: black;
         }
 
+        .no-scroll {
+            height: 10vh;
+        }
+
         .composition--container {
             position: relative;
             left: 0;
@@ -84,7 +91,7 @@
             top: 0;
             z-index: 3;
             transition: transform 0ms linear;
-            animation: 3s ease-out peopleMovement;
+            animation: 2s ease-out peopleMovement;
         }
 
         .composition--rocks {
@@ -96,20 +103,27 @@
             top: 0;
             z-index: 4;
             transition: transform 200ms linear;
-            animation: 3s ease-out rocksMovement;
+            animation: 2s ease-out rocksMovement;
         }
 
         .image--title {
             object-fit: contain;
             position: fixed;
             top: 60vh;
-            left: -35px;
+            left: -31px;
             right: 0;
             margin: auto;
             width: 90%;
             max-width: 550px;
             z-index: 5;
             transition: transform 200ms linear;
+        }
+
+        @media screen and (max-width: 566px) {
+            .image--title {
+                left: 2.5%;
+                right: 97.5%;
+            }
         }
 
         img {
@@ -139,18 +153,30 @@
             filter: blur(1px);
             opacity: .75;
         }
+
+        .no-visible {
+            visibility: hidden;
+        }
     </style>
 </head>
 
 <body>
-    <section>
-        <div class="composition">
-            <div class="light"></div>
+    <section tabindex="0">
+        <div class="composition no-scroll">
+            <div class="light no-visible"></div>
             <div class="composition--container">
-                <img class="composition--background" src="https://res.cloudinary.com/dt85oybzr/image/upload/v1691013280/scroll/main-background_jugibc.webp" alt="" width="100">
-                <img class="composition--rocks" src="https://res.cloudinary.com/dt85oybzr/image/upload/v1691013279/scroll/rocks_kuq1ug.webp" alt="" width="100">
-                <img class="composition--people" src="https://res.cloudinary.com/dt85oybzr/image/upload/v1691013279/scroll/people_dlrf1q.webp" alt="" width="100">
-                <img class="image--title composition--title" src="https://res.cloudinary.com/dt85oybzr/image/upload/v1691013279/scroll/signal-text_kmzkep.webp" alt="" width="100">
+                <img class="composition--background"
+                    src="https://res.cloudinary.com/dt85oybzr/image/upload/v1691013280/scroll/main-background_jugibc.webp"
+                    alt="" width="100">
+                <img class="composition--rocks"
+                    src="https://res.cloudinary.com/dt85oybzr/image/upload/v1691013279/scroll/rocks_kuq1ug.webp" alt=""
+                    width="100">
+                <img class="composition--people"
+                    src="https://res.cloudinary.com/dt85oybzr/image/upload/v1691013279/scroll/people_dlrf1q.webp" alt=""
+                    width="100">
+                <img class="image--title composition--title"
+                    src="https://res.cloudinary.com/dt85oybzr/image/upload/v1691013279/scroll/signal-text_kmzkep.webp"
+                    alt="" width="100">
             </div>
         </div>
     </section>
@@ -174,30 +200,24 @@
                 compositionRocks.style.transform = `scale(${1.0 + (userDelta / maxDelta * 0.4)})`;
             }
         });
+    </script>
+    <script type="text/javascript">
+        (function () {
+            function onReady() {
+                const light = document.querySelector(".light");
+                light.classList.remove('no-visible');
 
-
-        // const observer = new IntersectionObserver(function (entries) {
-        //     entries.forEach(function (entry) {
-        //         // If the image has become visible in the viewport
-        //         if (entry.isIntersecting) {
-        //             imagesLoaded++;
-        //             observer.unobserve(entry.target);
-        //         }
-        //     });
-
-        //     // Check if the number of images that have finished loading is equal to the total number of images
-        //     if (imagesLoaded == images.length) {
-        //         console.log('All images have finished loading');
-        //     }
-        // });
-
-        // // Get all the lazy-loaded images on the page
-        // const images = document.querySelectorAll('img');
-
-        // // Loop through the images and observe them
-        // images.forEach(function (image) {
-        //     observer.observe(image);
-        // });
+                setTimeout(() => {
+                    const composition = document.querySelector(".composition");
+                    composition.classList.remove('no-scroll');
+                }, 2500);
+            }
+            if (document.readyState === 'complete') {
+                onReady();
+            } else {
+                document.addEventListener('DOMContentLoaded', onReady);
+            }
+        })();
     </script>
 </body>
 

@@ -20,9 +20,9 @@
             margin: 0;
         }
 
-        @keyframes containerBlur {
+        @keyframes backgroundBlur {
             0% {
-                filter: blur(1px);
+                filter: blur(5px);
             }
 
             100% {
@@ -54,7 +54,6 @@
             position: relative;
             min-height: 100vh;
             height: 250vh;
-            /* animation: 3s ease-out containerBlur; */
             background-color: black;
         }
 
@@ -73,6 +72,7 @@
             top: 0;
             z-index: 0;
             transition: transform 200ms linear;
+            animation: 3s linear backgroundBlur;
         }
 
         .composition--people {
@@ -118,10 +118,10 @@
 
         @keyframes glowing {
             from {
-                box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+                box-shadow: 0 0 10px #ffb06149, 0 0 20px #ffaa5649, 0 0 30px #f99f454b, 0 0 40px #f9973555, 0 0 50px #f98f2562, 0 0 60px #f786152b, 0 0 70px #f97f0677;
             }
             to {
-                box-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+                box-shadow: 0 0 20px #ffb0617c, 0 0 20px #ffaa569b, 0 0 30px #f99f45a5, 0 0 40px #f99735a5, 0 0 50px #f98f255f, 0 0 60px #f7861591, 0 0 70px #f98006;
             }
         }
 
@@ -130,15 +130,14 @@
             left: 0;
             right: 0;
             position: fixed;
-            width: 10px;
+            width: 2px;
             height: 100vh;
-            /* background-color: #FFB061; */
-            background-color: black;
+            background-color: #f48211;
             margin: auto;
             padding-right: 5px;
-            /* box-shadow: 0 0 10px #f32121, 0 0 40px #c600ee, 0 0 80px #f704f7; */
-            /* animation: glowing 1s ease-in-out infinite alternate; */
-            box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+            animation: glowing 1s ease-in-out infinite alternate;
+            filter: blur(1px);
+            opacity: .75;
         }
     </style>
 </head>
@@ -146,7 +145,7 @@
 <body>
     <section>
         <div class="composition">
-            <!-- <div class="light"></div> -->
+            <div class="light"></div>
             <div class="composition--container">
                 <img class="composition--background" src="./assets/main-background.webp" alt="" width="100">
                 <img class="composition--rocks" src="./assets/rocks.webp" alt="" width="100">
